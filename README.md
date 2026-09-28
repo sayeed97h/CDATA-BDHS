@@ -1,2 +1,6 @@
 # CDATA-BDHS
 Room-Level Electricity Consumption Dataset of a Bangladeshi Household
+
+This dataset contains residential electricity consumption and indoor environmental data collected from a single-family unit in an apartment complex. A Refoss EM06P 6-channel smart energy meter captures electrical measurements across six circuits: main grid supply, backup power (Diesel Generator), and four individual rooms. Each channel reports current, voltage, active power, power factor, and cumulative energy consumption. The EM06P  publishes these readings over a local MQTT connection to a Raspberry Pi 4 every 5 seconds.
+
+A temperature and humidity sensor connected directly to the Raspberry Pi 4 provides indoor environmental context, sampling at the same 5-second rate and enabling correlation between ambient conditions and electrical load. The temperature sensor measures the temperature at the center of the house, where active cooling, such as airflow from ceiling fans, is typically less used. Thus, the measured temperature may be higher than the temperature experienced in occupied zones with active air circulation. Nevertheless, these measurements provide a useful indication of the baseline indoor thermal conditions. They can help estimate the cooling demand required to maintain an acceptable level of thermal comfort for occupants.
