@@ -24,9 +24,7 @@ The temperature sensor is located at the center of the house, where active cooli
 
 ## Metadata and access
 
-Full dataset metadata and download are available in the TalTech Data Repository:
-
-- Record: <https://data.taltech.ee/records/0c2kg-tp589?preview=1>
+Full dataset metadata is available in the TalTech Data Repository:
 - DOI: <https://doi.org/10.48726/0c2kg-tp589>
 
 ## Citation
