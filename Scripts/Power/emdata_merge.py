@@ -7,6 +7,7 @@ Merge daily meter CSV files (with or without a header row) into one clean CSV.
   or with repeated header rows
 - Removes unparseable rows, exact duplicates and duplicate timestamps
 - Writes merged_dataset.csv next to this script
+"""
 
 import sys
 from pathlib import Path
