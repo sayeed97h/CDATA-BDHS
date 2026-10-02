@@ -24,9 +24,9 @@ The temperature sensor is located at the center of the house, where active cooli
 
 ## Data format
 
-Both datasets are logged by Node-RED on the Raspberry Pi 4 as one CSV file per day.
+Node-RED logs both datasets on the Raspberry Pi 4 as one CSV file per day.
 
-| Dataset | Daily file name | Merged / filled outputs |
+| Dataset | Daily file name | Merged / filled outputs(from helper scripts) |
 |---|---|---|
 | Power logs (energy meter) | `DD-MM-YYYY.csv` | `merged_dataset.csv`, `merged_filled.csv` |
 | Temperature / humidity (AHT20) | `aht20-DD-MM-YYYY.csv` | `aht20_merged.csv`, `aht20_filled.csv` |
@@ -51,12 +51,14 @@ Channel mapping (the six circuits are listed under [Electrical measurements](#el
 
 | Channel | Circuit |
 |---|---|
-| 1 | |
-| 2 | |
-| 3 | |
-| 4 | |
-| 5 | |
-| 6 | |
+| 1 | Utility Grid (total consumption including aggregated consumption from kitchen and other appliances) |
+| 2 | Backup Power from DG [output routed with Utility through automatic transfer switch (ATS)] |
+| 3 | Living Room 1|
+| 4 | Living Room 2 (also shares common room and logger own consumption)|
+| 5 | Living Room 3|
+| 6 | Living Room 4|
+
+Note: when Utility Grid and Backup are both providing power, that means the backup generator is not running; the power is coming from the utility(routed via ATS) 
 
 ### Temperature / humidity logs
 
@@ -124,7 +126,7 @@ All outputs are written to the folder containing the script.
 
 - Zero-filled power rows mean "no data was recorded". This may be a real outage (such as load shedding) or only a logger or network dropout. Use the `Filled` column to identify these rows and exclude them from averages if you want only measured values.
 - Comparing channels helps tell the two cases apart: if the main grid channel is zero while the backup generator channel is active, the gap is load shedding.
-- Keep the merged (unfilled) files if you need the exact original timestamps, because the filled files use a regular 5 s grid.
+- Keep the merged (unfilled) files if you need the exact original timestamps, because the filled files use a regular 5 s interval.
 
 ## Metadata and access
 
@@ -148,5 +150,5 @@ If you use this dataset, please cite it as follows.
 > S. Hasan, S. M. M. Ahmed and D. Vinnikov, "Room-Level Electricity Consumption Dataset of a Bangladeshi Household". TalTech Data Repository, Aug. 19, 2026. doi: 10.48726/0c2kg-tp589.
 
 ## Credits
-
-Example merging scripts generated using Claude Sonnet 5.5 (Anthropic).
+- Remote data retrieval from the logger uses IT resources from the Power Electronics Group of TalTech
+- Example merging scripts generated using Claude Sonnet 5.5 (Anthropic).
